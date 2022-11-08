@@ -1,0 +1,42 @@
+plugins {
+  //inlude the nodeJS plugin to execute nodejs and npm tasks
+  id "com.github.node-gradle.node" version "3.5.0"
+  //id "com.moowork.node" version "1.3.1"
+  //id "org.ysb33r.nodejs.npm" version "0.10.0"
+}
+
+node {
+	download = true
+}
+
+//declare a build task
+task build
+
+task npmTest (type: Exec){
+    commandLine "npm", "test"
+}
+
+task npmBuild (type: Exec){
+    commandLine "npm", "build"
+}
+//declare a task to create a zip of the app
+task zip(type: Zip) {
+	from ('.') {
+		include "*"
+		include "bin/**"
+		include "data/**"
+		include "node_modules/**"
+		include "public/**"
+		include "routes/**"
+		include "views/**"
+	}
+	destinationDir(file("dist"))
+	baseName "trainSchedule"
+}
+
+//declare task dependencies
+build.dependsOn zip
+zip.dependsOn npmBuild
+npmBuild.dependsOn npmTest
+npmTest.dependsOn npmInstall
+

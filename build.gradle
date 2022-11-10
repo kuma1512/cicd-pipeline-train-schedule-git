@@ -14,11 +14,11 @@ task build
 
 //declare a npm test task
 task npmTest (type: Exec){
-    commandLine "npm", "test"
+    commandLine 'npm', 'test'
 }
 
 task npmBuild (type: Exec){
-    commandLine "npm", "build"
+    commandLine 'npm', 'build'
 }
 //declare a task to create a zip of the app
 task zip(type: Zip) {

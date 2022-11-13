@@ -43,4 +43,3 @@ zip.dependsOn npmBuild
 npmBuild.dependsOn npmTest
 npmTest.dependsOn npmInstall
 npmInstall.dependsOn npmSetup
-

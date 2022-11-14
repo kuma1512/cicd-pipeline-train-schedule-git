@@ -15,7 +15,7 @@ task build
 
 //declare a npm test task
 task npmTest (type: Exec){
-    commandLine './gradlew','--stop'
+    //commandLine './gradlew','--stop'
     commandLine 'npm','test'
 }
 
